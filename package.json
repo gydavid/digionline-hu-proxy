@@ -2,10 +2,10 @@
   "name": "musortv-epg-parser",
   "version": "1.0.0",
   "description": "Musor.tv EPG parser",
-  "main": "dist/main.js",
+  "main": "dist/app.js",
   "scripts": {
-    "start": "node dist/main.js",
-    "start:dev": "tsc && node dist/main.js",
+    "start": "node dist/app.js",
+    "start:dev": "tsc && node dist/app.js",
     "build": "tsc"
   },
   "devDependencies": {

@@ -2,9 +2,25 @@ import { Channel, ParsedChannel } from './interfaces';
 import { getAllPrograms } from './musortv-parser';
 import { safeXML } from './html-encoder';
 import { flatten } from 'ramda';
-import { format, subHours } from 'date-fns';
+import { format, subHours, differenceInHours } from 'date-fns';
 const fs = require('fs');
 const ProgressBar = require('progress');
+import channels from '../config/channels.json';
+
+export async function epgLoop() {
+  let last_epg_generation;
+  try {
+    last_epg_generation = fs.readFileSync('.last_epg_generation');
+  } catch {
+    last_epg_generation = new Date('2000-01-01');
+  }
+  const lastGenerationDate = new Date(last_epg_generation);
+  if (differenceInHours(new Date(), lastGenerationDate) >= 24) {
+    await generateEpg(channels);
+    fs.writeFileSync('.last_epg_generation', new Date().toString());
+  }
+  setTimeout(epgLoop, 1000 * 60 * 5);
+}
 
 export async function generateEpg(rawChannels: Channel[]) {
   console.log('---------------------------');
@@ -20,7 +36,6 @@ export async function generateEpg(rawChannels: Channel[]) {
   console.log(' ');
   console.log('Successful EPG generation!');
   console.log(' ');
-  fs.writeFileSync('.last_epg_generation', new Date())
 }
 
 function getChannelXml(channel: Channel): string {
