@@ -6,5 +6,4 @@ dist/
 .env
 .DS_Store
 .vscode/
-.last_epg_generation
-epg.xml
+data/

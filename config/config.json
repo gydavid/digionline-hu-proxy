@@ -1,0 +1,13 @@
+{
+  "web": {
+    "domain": "192.168.0.1",
+    "port": 3391,
+    "ssl": false,
+    "auth": {
+      "enabled": false,
+      "user": "username",
+      "password": "password"
+    }
+  },
+  "refresh_interval": 24
+}

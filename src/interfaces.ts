@@ -1,7 +1,15 @@
-export type Channel = {
-  url: string;
+export type Category = {
+  id: string;
   name: string;
-  slug: string;
+};
+
+export type Channel = {
+  name: string;
+  logoUrl: string;
+  id: string;
+  category: Category;
+  url: string;
+  programUrl: string;
 };
 
 export type Program = {

@@ -1,27 +1,21 @@
-import { Channel, ParsedChannel, Program } from './interfaces';
 import * as cheerio from 'cheerio';
 const got = require('got');
 import { addHours, isEqual } from 'date-fns';
+import { slug } from '../../../lib';
+import { Channel, ParsedChannel, Program } from '../../../interfaces';
 
 export function getAllPrograms(channels: Channel[], bar?): Promise<ParsedChannel[]> {
-  return Promise.all(channels.map((channel) => getPrograms(channel, bar)));
+  return Promise.all(channels.map((channel) => getPrograms({ channel, bar })));
 }
 
-export async function getPrograms(channel: Channel, bar?): Promise<ParsedChannel> {
-  const response = await got(channel.url, {
+export async function getPrograms({ channel, bar }: { channel: Channel; bar? }): Promise<ParsedChannel> {
+  const response = await got(channel.programUrl, {
     timeout: 1000 * 30,
     retry: 3,
-    hooks: {
-      beforeRetry: [
-        (opt) => {
-          console.log('[Retry]', opt.href);
-        },
-      ],
-    },
   });
 
   const programList: Program[] = [];
-  const $ = cheerio.load(response.body, { decodeEntities: true });
+  const $ = cheerio.load(response.body);
 
   $('section').each((_, section) => {
     let ignore = $(section).find('[class="rotated-text rotated-to-be-seen_internal"]').length > 0;
@@ -36,7 +30,7 @@ export async function getPrograms(channel: Channel, bar?): Promise<ParsedChannel
             programList.push({
               startDate,
               endDate: addHours(startDate, 1),
-              id: channel.slug,
+              id: slug(channel.name),
               title: $(program).find('[itemprop="name"] a').text(),
               subtitle: $(program).find('[itemprop="description"]').text(),
               desc: $(program).find('.smartpe_progentrylong').text(),
@@ -45,6 +39,10 @@ export async function getPrograms(channel: Channel, bar?): Promise<ParsedChannel
         });
     }
   });
+
+  if (programList.length === 0) {
+    throw new Error('parsing problem');
+  }
 
   programList.sort(function (a, b) {
     const aData = new Date(a.startDate);

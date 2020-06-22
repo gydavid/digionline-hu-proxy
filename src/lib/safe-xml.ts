@@ -7,7 +7,9 @@ export function safeXML(html: string): string {
     "'": '&#39;',
   };
 
-  return html.replace(/[&<>"'\/\\]/g, function (match) {
-    return replaceMap[match];
-  });
+  return html
+    .replace(/[&<>"']/g, function (match) {
+      return replaceMap[match];
+    })
+    .replace(/\uFFFD/g, '');
 }

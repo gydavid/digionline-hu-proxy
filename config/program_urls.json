@@ -1,0 +1,272 @@
+[
+  {
+    "id": "243",
+    "name": "AMC",
+    "programUrl": "https://musor.tv/heti/tvmusor/AMC"
+  },
+  {
+    "id": "244",
+    "name": "Comedy Central",
+    "programUrl": "https://musor.tv/heti/tvmusor/COMEDY"
+  },
+  {
+    "id": "245",
+    "name": "Cool TV",
+    "programUrl": "https://musor.tv/heti/tvmusor/COOL"
+  },
+  {
+    "id": "246",
+    "name": "DIGI Animal World",
+    "programUrl": "https://musor.tv/heti/tvmusor/DIGIANIMALWORLD"
+  },
+  {
+    "id": "247",
+    "name": "DIGI Life",
+    "programUrl": "https://musor.tv/heti/tvmusor/DIGILIFE"
+  },
+  {
+    "id": "248",
+    "name": "DIGI Sport 1",
+    "programUrl": "https://musor.tv/heti/tvmusor/DIGISPORT1"
+  },
+  {
+    "id": "249",
+    "name": "DIGI Sport 2",
+    "programUrl": "https://musor.tv/heti/tvmusor/DIGISPORT2"
+  },
+  {
+    "id": "250",
+    "name": "DIGI Sport 3",
+    "programUrl": "https://musor.tv/heti/tvmusor/DIGISPORT3"
+  },
+  {
+    "id": "251",
+    "name": "DIGI World",
+    "programUrl": "https://musor.tv/heti/tvmusor/DIGIWORLD"
+  },
+  {
+    "id": "252",
+    "name": "Discovery Channel",
+    "programUrl": "https://musor.tv/heti/tvmusor/DISCOVERY"
+  },
+  {
+    "id": "253",
+    "name": "Duna",
+    "programUrl": "https://musor.tv/heti/tvmusor/DUNA"
+  },
+  {
+    "id": "254",
+    "name": "Duna World",
+    "programUrl": "https://musor.tv/heti/tvmusor/DUNAWORLD"
+  },
+  {
+    "id": "255",
+    "name": "Eurosport",
+    "programUrl": "https://musor.tv/heti/tvmusor/EUROSPORT"
+  },
+  {
+    "id": "256",
+    "name": "Eurosport 2",
+    "programUrl": "https://musor.tv/heti/tvmusor/EUROSPORT2"
+  },
+  {
+    "id": "257",
+    "name": "FEM3",
+    "programUrl": "https://musor.tv/heti/tvmusor/FEM3"
+  },
+  {
+    "id": "258",
+    "name": "Film Now",
+    "programUrl": "https://musor.tv/heti/tvmusor/FILMNOW"
+  },
+  {
+    "id": "259",
+    "name": "Film+",
+    "programUrl": "https://musor.tv/heti/tvmusor/FILMPLUS"
+  },
+  {
+    "id": "260",
+    "name": "H!T Music Channel",
+    "programUrl": "https://musor.tv/heti/tvmusor/HIT_MUSIC"
+  },
+  {
+    "id": "261",
+    "name": "HISTORY",
+    "programUrl": "https://musor.tv/heti/tvmusor/HISTORYHD"
+  },
+  {
+    "id": "263",
+    "name": "Izaura",
+    "programUrl": "https://musor.tv/heti/tvmusor/IZAURA_TV"
+  },
+  {
+    "id": "264",
+    "name": "Kiwi TV",
+    "programUrl": "https://musor.tv/heti/tvmusor/KIWI_TV"
+  },
+  {
+    "id": "265",
+    "name": "LiChi TV",
+    "programUrl": "https://musor.tv/heti/tvmusor/LICHI_TV"
+  },
+  {
+    "id": "266",
+    "name": "M1",
+    "programUrl": "https://musor.tv/heti/tvmusor/M1"
+  },
+  {
+    "id": "267",
+    "name": "M2",
+    "programUrl": "https://musor.tv/heti/tvmusor/M2"
+  },
+  {
+    "id": "268",
+    "name": "M4 Sport",
+    "programUrl": "https://musor.tv/heti/tvmusor/M4_SPORT"
+  },
+  {
+    "id": "269",
+    "name": "M5",
+    "programUrl": "https://musor.tv/heti/tvmusor/M5"
+  },
+  {
+    "id": "270",
+    "name": "Minimax",
+    "programUrl": "https://musor.tv/heti/tvmusor/MINIMAX"
+  },
+  {
+    "id": "271",
+    "name": "Mozi+",
+    "programUrl": "https://musor.tv/heti/tvmusor/MOZI_PLUSZ"
+  },
+  {
+    "id": "272",
+    "name": "MTV Hungary",
+    "programUrl": "https://musor.tv/heti/tvmusor/MTVHU"
+  },
+  {
+    "id": "274",
+    "name": "Music Channel",
+    "programUrl": "https://musor.tv/heti/tvmusor/MUSICCHANNEL"
+  },
+  {
+    "id": "275",
+    "name": "Muzsika TV",
+    "programUrl": "https://musor.tv/heti/tvmusor/MUZSIKATV"
+  },
+  {
+    "id": "276",
+    "name": "Nat Geo",
+    "programUrl": "https://musor.tv/heti/tvmusor/NATGEO"
+  },
+  {
+    "id": "278",
+    "name": "Nat Geo WILD",
+    "programUrl": "https://musor.tv/heti/tvmusor/NATGEOWILD"
+  },
+  {
+    "id": "281",
+    "name": "Nickelodeon",
+    "programUrl": "https://musor.tv/heti/tvmusor/NICKELODEON"
+  },
+  {
+    "id": "282",
+    "name": "Paramount Channel",
+    "programUrl": "https://musor.tv/heti/tvmusor/PARAMOUNT"
+  },
+  {
+    "id": "284",
+    "name": "PRIME",
+    "programUrl": "https://musor.tv/heti/tvmusor/PRIME"
+  },
+  {
+    "id": "242",
+    "name": "RTL Gold",
+    "programUrl": "https://musor.tv/heti/tvmusor/RTL_GOLD"
+  },
+  {
+    "id": "285",
+    "name": "RTL Spike",
+    "programUrl": "https://musor.tv/heti/tvmusor/RTL_SPIKE"
+  },
+  {
+    "id": "302",
+    "name": "RTL+",
+    "programUrl": "https://musor.tv/heti/tvmusor/RTL_PLUSZ"
+  },
+  {
+    "id": "286",
+    "name": "RTLII",
+    "programUrl": "https://musor.tv/heti/tvmusor/RTL2"
+  },
+  {
+    "id": "287",
+    "name": "Sláger TV",
+    "programUrl": "https://musor.tv/heti/tvmusor/SLAGERTV"
+  },
+  {
+    "id": "301",
+    "name": "Sorozat+",
+    "programUrl": "https://musor.tv/heti/tvmusor/SOROZAT"
+  },
+  {
+    "id": "288",
+    "name": "Spektrum",
+    "programUrl": "https://musor.tv/heti/tvmusor/SPEKTRUM"
+  },
+  {
+    "id": "289",
+    "name": "SPORT1",
+    "programUrl": "https://musor.tv/heti/tvmusor/SPORT1"
+  },
+  {
+    "id": "290",
+    "name": "SPORT2",
+    "programUrl": "https://musor.tv/heti/tvmusor/SPORT2"
+  },
+  {
+    "id": "291",
+    "name": "SuperTV2",
+    "programUrl": "https://musor.tv/heti/tvmusor/SUPERTV2"
+  },
+  {
+    "id": "295",
+    "name": "TLC",
+    "programUrl": "https://musor.tv/heti/tvmusor/TLC"
+  },
+  {
+    "id": "296",
+    "name": "TV Paprika",
+    "programUrl": "https://musor.tv/heti/tvmusor/PAPRIKA"
+  },
+  {
+    "id": "297",
+    "name": "TV2",
+    "programUrl": "https://musor.tv/heti/tvmusor/TV2"
+  },
+  {
+    "id": "306",
+    "name": "TV2 Comedy",
+    "programUrl": "https://musor.tv/heti/tvmusor/TV2_COMEDY"
+  },
+  {
+    "id": "303",
+    "name": "The Fishing & Hunting",
+    "programUrl": "https://musor.tv/heti/tvmusor/FISHING_HUNTING"
+  },
+  {
+    "id": "298",
+    "name": "Viasat History",
+    "programUrl": "https://musor.tv/heti/tvmusor/VIASATHIST"
+  },
+  {
+    "id": "299",
+    "name": "Viasat Nature",
+    "programUrl": "https://musor.tv/heti/tvmusor/VIASATNAT"
+  },
+  {
+    "id": "300",
+    "name": "Zenebutik",
+    "programUrl": "https://musor.tv/heti/tvmusor/ZENEBUTIK"
+  }
+]
