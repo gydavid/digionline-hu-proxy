@@ -2,15 +2,14 @@ import * as cheerio from 'cheerio';
 const got = require('got');
 const addHours = require('date-fns/addHours');
 const isEqual = require('date-fns/isEqual');
-
 import { slug } from '../../../lib';
 import { Channel, ParsedChannel, Program } from '../../../interfaces';
 
 export function getAllPrograms(channels: Channel[], bar?): Promise<ParsedChannel[]> {
-  return Promise.all(channels.map((channel) => getPrograms({ channel, bar })));
+  return Promise.all(channels.map((channel) => getPrograms(channel, bar)));
 }
 
-export async function getPrograms({ channel, bar }: { channel: Channel; bar? }): Promise<ParsedChannel> {
+export async function getPrograms(channel: Channel, bar?): Promise<ParsedChannel> {
   const response = await got(channel.programUrl, {
     timeout: 1000 * 30,
     retry: 3,

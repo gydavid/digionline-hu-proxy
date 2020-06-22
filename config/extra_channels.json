@@ -1,0 +1,13 @@
+[
+  {
+    "name": "RTL Klub",
+    "logoUrl": "https://online.digi.hu/cache/api/programs/rtl-klub.png",
+    "id": "extra_1",
+    "category": {
+      "id": "8",
+      "name": "hír/közszolgálati/kulturális"
+    },
+    "url": "http://152.66.115.226:33390/bysid/203",
+    "programUrl": "https://musor.tv/heti/tvmusor/RTL"
+  }
+]

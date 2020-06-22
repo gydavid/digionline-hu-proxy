@@ -6,23 +6,24 @@ const format = require('date-fns/format');
 const subHours = require('date-fns/subHours');
 const fs = require('fs');
 const ProgressBar = require('progress');
+import extraChannels from '../../../../config/extra_channels.json';
 
 export async function generateEpg(rawChannels: Channel[]) {
   console.log('Start Program parsing!');
+  const allChannels = [...rawChannels, ...extraChannels];
   const bar = new ProgressBar(':bar :current/:total channel loaded...', {
-    total: rawChannels.length,
+    total: allChannels.length,
   });
-  let channels = [];
   try {
-    channels = await getAllPrograms(rawChannels, bar);
+    const channels = await getAllPrograms(allChannels, bar);
+    const channelsXml = channels.map(getChannelXml);
+    const programsXml = flatten(channels.map(getProgramsXml));
+    writeXml(channelsXml, programsXml);
+    console.log('Successful EPG generation!');
   } catch (e) {
     console.error(`\nEPG parsing failed! (${e.message})`);
     return;
   }
-  const channelsXml = channels.map(getChannelXml);
-  const programsXml = flatten(channels.map(getProgramsXml));
-  writeXml(channelsXml, programsXml);
-  console.log('Successful EPG generation!');
 }
 
 function getChannelXml(channel: Channel): string {
