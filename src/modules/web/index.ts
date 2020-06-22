@@ -30,10 +30,10 @@ export class Web {
       res.sendFile('data/epg.xml', { root: process.cwd() });
     });
 
-    app.get('/channels/:device_id*?', async (req, res) => {
+    app.get('/channels/:device_id?/:quality*?', async (req, res) => {
       let deviceId = req.params.device_id ? parseInt(req.params.device_id.split(/[.\-_]/)[0]) : 0;
       if (deviceId > 2) deviceId = 0;
-      const playslist = await generatePlaylist(this._db.get('channels'), deviceId);
+      const playslist = await generatePlaylist(this._db.get('channels'), deviceId, req.params.quality || 'hq');
       res.send(playslist);
     });
 
