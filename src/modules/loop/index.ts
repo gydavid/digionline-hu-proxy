@@ -1,4 +1,4 @@
-import config from '../../config/config.json';
+import config from '../../../config/config.json';
 
 type LoopFn = () => Promise<void>;
 export class Loop {

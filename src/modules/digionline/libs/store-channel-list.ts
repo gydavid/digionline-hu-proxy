@@ -1,8 +1,8 @@
 import * as cheerio from 'cheerio';
 import { propEq } from 'ramda';
 const got = require('got');
-import programUrls from '../../../config/program_urls.json';
-import config from '../../../config/config.json';
+import programUrls from '../../../../config/program_urls.json';
+import config from '../../../../config/config.json';
 import { Category, Channel } from '../../../interfaces';
 
 export async function getChannelList() {

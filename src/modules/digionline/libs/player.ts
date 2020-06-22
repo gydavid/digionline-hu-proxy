@@ -1,7 +1,7 @@
 import { Channel } from '../../../interfaces';
 import * as cheerio from 'cheerio';
 import { Http } from '../../http';
-import config from '../../../config/config.json';
+import config from '../../../../config/config.json';
 const differenceInSeconds = require('date-fns/differenceInSeconds');
 
 const http: Http[] = config.digionline.users.map(() => new Http());

@@ -14,14 +14,17 @@
   "digionline": {
     "users": [
       {
+        "device_name": "TV1",
         "email": "user@user.user",
         "password": "pass1"
       },
       {
+        "device_name": "TV2",
         "email": "user@user.user",
         "password": "pass2"
       },
       {
+        "device_name": "TV3",
         "email": "usre@user.user",
         "password": "pass3"
       }
