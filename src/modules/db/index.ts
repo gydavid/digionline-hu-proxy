@@ -1,4 +1,5 @@
-import { Injectable } from 'inject-ts';
+import { Injectable } from '../inject';
+
 const Lowdb = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
 

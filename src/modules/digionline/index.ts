@@ -1,6 +1,6 @@
 import { getChannelList } from './libs';
-import { Inject } from 'inject-ts';
 import { DB } from '../db';
+import { Inject } from '../inject';
 
 export class DigiOnline {
   @Inject(DB) private _db: DB;

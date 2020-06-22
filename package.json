@@ -22,12 +22,13 @@
     "express": "4.17.1",
     "express-basic-auth": "1.2.0",
     "got": "11.3.0",
-    "inject-ts": "^0.1.1",
     "lowdb": "1.0.0",
+    "mem": "^6.1.0",
     "progress": "2.0.3",
     "ramda": "0.27.0",
-    "rimraf": "^3.0.2",
+    "rimraf": "3.0.2",
     "slugify": "1.4.0",
+    "tough-cookie": "4.0.0",
     "tsc-watch": "4.2.8"
   }
 }

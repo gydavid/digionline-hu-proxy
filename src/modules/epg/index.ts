@@ -1,8 +1,8 @@
 import { generateEpg } from './libs';
-import { Inject } from 'inject-ts';
 import { DB } from '../db';
-import programUrls from '../../../config/program_urls.json';
+import programUrls from '../../config/program_urls.json';
 import { Channel } from '../../interfaces';
+import { Inject } from '../inject';
 
 export class Epg {
   @Inject(DB) private _db: DB;

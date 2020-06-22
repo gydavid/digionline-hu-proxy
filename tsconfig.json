@@ -5,7 +5,10 @@
     "esModuleInterop": true,
     "outDir": "./dist",
     "rootDir": "./",
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "target": "ES2019",
+    "lib": ["ES2019"],
+    "module": "commonjs"
   },
   "include": [
     "src/**/*.ts"

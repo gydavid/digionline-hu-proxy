@@ -1,8 +1,8 @@
 import * as cheerio from 'cheerio';
 import { propEq } from 'ramda';
 const got = require('got');
-import programUrls from '../../../../config/program_urls.json';
-import config from '../../../../config/config.json';
+import programUrls from '../../../config/program_urls.json';
+import config from '../../../config/config.json';
 import { Category, Channel } from '../../../interfaces.js';
 
 export async function getChannelList() {
@@ -50,6 +50,6 @@ function getChannelUrl(id: string) {
   return config.web.auth.enabled
     ? `${config.web.ssl ? 'https' : 'http'}://${config.web.auth.user}:${config.web.auth.password}@${
         config.web.domain
-      }/channel/${id}`
-    : `${config.web.ssl ? 'https' : 'http'}://${config.web.domain}/channel/${id}`;
+      }:${config.web.outerPort}/channel/${id}`
+    : `${config.web.ssl ? 'https' : 'http'}://${config.web.domain}:${config.web.outerPort}/channel/${id}`;
 }
