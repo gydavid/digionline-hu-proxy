@@ -1,7 +1,7 @@
 import express from 'express';
 const basicAuth = require('express-basic-auth');
 import config from '../../config/config.json';
-import { DB } from '../db/index.js';
+import { DB } from '../db';
 import { generatePlaylist } from '../digionline/libs';
 import { getPlaylist } from '../digionline/libs/player';
 import { Inject } from '../inject';

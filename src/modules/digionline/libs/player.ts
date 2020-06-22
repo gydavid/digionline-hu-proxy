@@ -2,7 +2,7 @@ import { Channel } from '../../../interfaces';
 import * as cheerio from 'cheerio';
 import { Http } from '../../http';
 import config from '../../../config/config.json';
-var differenceInSeconds = require('date-fns/differenceInSeconds');
+const differenceInSeconds = require('date-fns/differenceInSeconds');
 
 const http: Http[] = config.digionline.users.map(() => new Http());
 const lastChannel = {};

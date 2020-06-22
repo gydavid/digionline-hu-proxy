@@ -1,8 +1,9 @@
 import { getAllPrograms } from './';
 import { safeXML, slug } from '../../../lib';
 import { flatten } from 'ramda';
-import { format, subHours } from 'date-fns';
 import { Channel, ParsedChannel } from '../../../interfaces';
+const format = require('date-fns/format');
+const subHours = require('date-fns/subHours');
 const fs = require('fs');
 const ProgressBar = require('progress');
 

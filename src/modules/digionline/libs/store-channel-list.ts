@@ -3,7 +3,7 @@ import { propEq } from 'ramda';
 const got = require('got');
 import programUrls from '../../../config/program_urls.json';
 import config from '../../../config/config.json';
-import { Category, Channel } from '../../../interfaces.js';
+import { Category, Channel } from '../../../interfaces';
 
 export async function getChannelList() {
   const response = await got('https://digionline.hu/csatornak', {

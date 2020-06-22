@@ -1,6 +1,8 @@
 import * as cheerio from 'cheerio';
 const got = require('got');
-import { addHours, isEqual } from 'date-fns';
+const addHours = require('date-fns/addHours');
+const isEqual = require('date-fns/isEqual');
+
 import { slug } from '../../../lib';
 import { Channel, ParsedChannel, Program } from '../../../interfaces';
 
