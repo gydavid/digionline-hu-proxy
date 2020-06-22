@@ -4,7 +4,7 @@
   "description": "Musor.tv EPG parser",
   "main": "dist/src/main.js",
   "scripts": {
-    "start": "rimraf dist && node dist/src/main.js",
+    "start": "node ./dist/src/main.js",
     "start:dev": "rimraf dist && tsc-watch --onSuccess \"node ./dist/src/main.js\"",
     "build": "rimraf dist && tsc"
   },
