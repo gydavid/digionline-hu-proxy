@@ -3,7 +3,7 @@ const basicAuth = require('express-basic-auth');
 import config from '../../config/config.json';
 import { DB } from '../db';
 import { generatePlaylist } from '../digionline/libs';
-import { getPlaylist } from '../digionline/libs/player';
+import { getPlaylist, getDevice } from '../digionline/libs/player';
 import { Inject } from '../inject';
 
 const app = express();
@@ -25,8 +25,10 @@ export class Web {
       );
     }
 
-    app.get('/epg/:device_id*?', (_req, res) => {
-      console.log('get EPG');
+    app.get('/epg/:device_id*?', (req, res) => {
+      let deviceId = req.params.device_id ? parseInt(req.params.device_id.split(/[.\-_]/)[0]) : 0;
+      if (deviceId > 2) deviceId = 0;
+      console.log(`#${getDevice(deviceId).device_name}# Get EPG`);
       res.sendFile('data/epg.xml', { root: process.cwd() });
     });
 
@@ -38,17 +40,22 @@ export class Web {
     });
 
     app.get('/channel/:channel_id/:device_id?/:quality*?', async (req, res) => {
+      if (req.headers['icy-metadata']) {
+        res.send('');
+        return;
+      }
       if (req.params.channel_id) {
+        let deviceId = req.params.device_id ? parseInt(req.params.device_id.split(/[.\-_]/)[0]) : 0;
+        if (deviceId > 2) deviceId = 0;
         try {
-          let deviceId = req.params.device_id ? parseInt(req.params.device_id.split(/[.\-_]/)[0]) : 0;
-          if (deviceId > 2) deviceId = 0;
           const stream = await getPlaylist(
             this._db.find('channels', { id: req.params.channel_id }),
             req.params.quality || 'hq',
             deviceId,
           );
           res.send(stream);
-        } catch {
+        } catch (e) {
+          console.log(`#${getDevice(deviceId).device_name}# ${e.message}`);
           res.send('ERROR');
         }
       }

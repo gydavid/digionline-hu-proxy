@@ -15,12 +15,13 @@ export async function getPlaylist(channel: Channel, quality = 'hq', deviceId, af
       await login(deviceId);
       return getPlaylist(channel, quality, deviceId, true);
     }
-    console.log('get cached playlist', channel.name);
+    console.log(`#${getDevice(deviceId).device_name}# Continues channel: ${channel.name}`);
     const stream = await getStream(lastChannel[deviceId].playlists, quality, deviceId);
     return stream;
   }
   hello(deviceId, channel);
-  console.log('get playlist', channel.name);
+  console.log(`#${getDevice(deviceId).device_name}# Get channel: ${channel.name}`);
+
   const response = await http[deviceId].get(`https://digionline.hu/player/${channel.id}`);
 
   const urlMatch = response.match(/https:\/\/online.digi.hu(.*?).m3u8/g);
@@ -30,7 +31,7 @@ export async function getPlaylist(channel: Channel, quality = 'hq', deviceId, af
       await login(deviceId);
       return getPlaylist(channel, quality, deviceId, true);
     } else {
-      throw new Error('missing playlist url');
+      throw new Error('Missing playlist url');
     }
   }
   const playlists = await http[deviceId].get(urlMatch[0]);
@@ -50,7 +51,7 @@ async function hello(deviceId: number, channel: Channel) {
 }
 
 async function getStream(playlists, quality, deviceId) {
-  let streamUrl = playlists.trim().match(new RegExp(`  https:(.*q=${quality}.*)`, 'g'));
+  let streamUrl = playlists.trim().match(new RegExp(`https:(.*q=${quality}.*)`, 'g'));
   if (!streamUrl) streamUrl = playlists.trim().match(new RegExp(`https:(.*q=.*)$`, 'g'));
   const timestamp = Math.floor(Date.now() / 1000);
   let url = streamUrl[0].split('&_t=')[0] + `&_t=${timestamp}`;
@@ -58,7 +59,7 @@ async function getStream(playlists, quality, deviceId) {
 }
 
 async function login(deviceId: number) {
-  console.log('login');
+  console.log(`#${getDevice(deviceId).device_name}# Login to DigiOnline...`);
   const response = await http[deviceId].get('https://digionline.hu/login');
 
   const $ = cheerio.load(response);
@@ -71,14 +72,15 @@ async function login(deviceId: number) {
   await http[deviceId].post('https://digionline.hu/login', {
     _token: token,
     accept: '1',
-    ...config.digionline.users[deviceId],
+    email: getDevice(deviceId).email,
+    password: getDevice(deviceId).password,
   });
 
   if (isLoggedIn(deviceId)) {
     delete lastChannel[deviceId];
-    console.log('login success');
+    console.log(`#${getDevice(deviceId).device_name}# Login Success!`);
   } else {
-    throw new Error('login failed');
+    throw new Error('Login Failed :(');
   }
 }
 
@@ -86,4 +88,8 @@ async function isLoggedIn(deviceId: number) {
   const response = await http[deviceId].get('https://digionline.hu/');
 
   return response.indexOf('"in-user"') > -1 ? true : false;
+}
+
+export function getDevice(devieId: number) {
+  return config.digionline.users[devieId];
 }

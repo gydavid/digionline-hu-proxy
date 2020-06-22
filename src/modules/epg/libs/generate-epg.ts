@@ -16,7 +16,7 @@ export async function generateEpg(rawChannels: Channel[]) {
   try {
     channels = await getAllPrograms(rawChannels, bar);
   } catch (e) {
-    console.error(`\nEPG parsing fail! (${e.message})`);
+    console.error(`\nEPG parsing failed! (${e.message})`);
     return;
   }
   const channelsXml = channels.map(getChannelXml);
