@@ -32,16 +32,19 @@ export async function getPrograms(channel: Channel, attempt = 0): Promise<Parsed
           .each((_, program) => {
             const startDate = new Date($(program).find('[itemprop="startDate"]').attr('content'));
 
-            if (!programList.find((program) => isEqual(program.startDate, startDate))) {
-              programList.push({
-                startDate,
-                endDate: addHours(startDate, 1),
-                id: slug(channel.name),
-                title: $(program).find('[itemprop="name"] a').text(),
-                subtitle: $(program).find('[itemprop="description"]').text(),
-                desc: $(program).find('.smartpe_progentrylong').text(),
-              });
+            const exists = programList.findIndex((program) => isEqual(program.startDate, startDate));
+            if (exists > -1) {
+              programList.splice(exists, 1);
             }
+
+            programList.push({
+              startDate,
+              endDate: addHours(startDate, 1),
+              id: slug(channel.name),
+              title: $(program).find('[itemprop="name"] a').text(),
+              subtitle: $(program).find('[itemprop="description"]').text(),
+              desc: $(program).find('.smartpe_progentrylong').text(),
+            });
           });
       }
     });
