@@ -1,15 +1,16 @@
 import * as cheerio from 'cheerio';
-const got = require('got');
 const addHours = require('date-fns/addHours');
 const isEqual = require('date-fns/isEqual');
 import { slug, promiseSequence } from '../../../lib';
 import { Channel, ParsedChannel, Program } from '../../../interfaces';
+import { Http } from '../../http';
+const http = new Http();
 
 export function getAllPrograms(channels: Channel[], bar?): Promise<ParsedChannel[]> {
   return promiseSequence(
     channels.map((channel) => () =>
       getPrograms(channel).then((programs) => {
-        if (bar) bar.tick();
+        if (bar) bar.increment();
         return programs;
       }),
     ),
@@ -17,14 +18,10 @@ export function getAllPrograms(channels: Channel[], bar?): Promise<ParsedChannel
 }
 
 export async function getPrograms(channel: Channel, attempt = 0): Promise<ParsedChannel> {
-  const response = await got(channel.programUrl, {
-    timeout: 1000 * 30,
-    retry: 3,
-  });
-
+  const response = await http.get(channel.programUrl);
   try {
     const programList: Program[] = [];
-    const $ = cheerio.load(response.body);
+    const $ = cheerio.load(response);
 
     $('section').each((_, section) => {
       let ignore = $(section).find('[class="rotated-text rotated-to-be-seen_internal"]').length > 0;

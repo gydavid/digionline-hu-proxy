@@ -1,16 +1,14 @@
 import * as cheerio from 'cheerio';
 import { propEq } from 'ramda';
-const got = require('got');
 import programUrls from '../../../../config/program_urls.json';
 import config from '../../../../config/config.json';
 import { Category, Channel } from '../../../interfaces';
+import { Http } from '../../http';
+const http = new Http();
 
 export async function getChannelList() {
-  const response = await got('https://digionline.hu/csatornak', {
-    timeout: 1000 * 30,
-    retry: 3,
-  });
-  const $ = cheerio.load(response.body);
+  const response = await http.get('https://digionline.hu/csatornak');
+  const $ = cheerio.load(response);
   const categories = parseCategories($);
   return parseChannels(categories, $);
 }

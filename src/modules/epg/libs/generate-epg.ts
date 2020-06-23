@@ -5,17 +5,23 @@ import { Channel, ParsedChannel } from '../../../interfaces';
 const format = require('date-fns/format');
 const subHours = require('date-fns/subHours');
 const fs = require('fs');
-const ProgressBar = require('progress');
+const cliProgress = require('cli-progress');
 import extraChannels from '../../../../config/extra_channels.json';
 
 export async function generateEpg(rawChannels: Channel[]) {
-  console.log('Start Program parsing!');
   const allChannels = [...rawChannels, ...extraChannels];
-  const bar = new ProgressBar(':bar :current/:total channel loaded...', {
-    total: allChannels.length,
-  });
+  const bar = new cliProgress.SingleBar(
+    {
+      noTTYOutput: true,
+      hideCursor: true,
+      format: 'Generate EPG | {bar} {percentage}% | ETA: {eta}s | {value}/{total}',
+    },
+    cliProgress.Presets.shades_classic,
+  );
+  bar.start(allChannels.length, 0);
   try {
     const channels = await getAllPrograms(allChannels, bar);
+    bar.stop();
     const channelsXml = channels.map(getChannelXml);
     const programsXml = flatten(channels.map(getProgramsXml));
     writeXml(channelsXml, programsXml);
