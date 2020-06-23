@@ -1,6 +1,7 @@
 import { getChannelList } from './libs';
 import { DB } from '../db';
 import { Inject } from '../inject';
+import config from '../../../config/config.json';
 
 export class DigiOnline {
   @Inject(DB) private _db: DB;
@@ -13,7 +14,10 @@ export class DigiOnline {
 
   async channels() {
     const channels = await getChannelList();
-    this._db.set('channels', channels);
+    const filteredChannels = channels.filter(
+      (channel) => !config.digionline.removeChannels.includes(parseInt(channel.id)),
+    );
+    this._db.set('channels', filteredChannels);
     console.log('Successful Channels generation!');
   }
 }
