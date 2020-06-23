@@ -7,7 +7,8 @@ export class DigiOnline {
 
   constructor() {
     this.channels = this.channels.bind(this);
-    this._db.defaults({ channels: [] });
+    this._db.defaults({ channels: [], session: {} });
+    this._db.set(`session`, {});
   }
 
   async channels() {
