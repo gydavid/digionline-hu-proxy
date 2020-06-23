@@ -12,6 +12,9 @@
   },
   "refresh_interval": 24,
   "digionline": {
+    "removeChannels": [
+      258
+    ],
     "users": [
       {
         "device_name": "TV1",
