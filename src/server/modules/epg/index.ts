@@ -1,6 +1,6 @@
 import { generateEpg } from './libs';
 import { DB } from '../db';
-import programUrls from '../../../config/program_urls.json';
+import programUrls from '../../../../config/program_urls.json';
 import { Channel } from '../../interfaces';
 import { Inject } from '../inject';
 

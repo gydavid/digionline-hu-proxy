@@ -1,7 +1,7 @@
 import { Channel } from '../../../interfaces';
 import * as cheerio from 'cheerio';
 import { Http } from '../../http';
-import config from '../../../../config/config.json';
+import config from '../../../../../config/config.json';
 import { DB } from '../../db';
 import { Context } from '../../inject';
 const differenceInSeconds = require('date-fns/differenceInSeconds');

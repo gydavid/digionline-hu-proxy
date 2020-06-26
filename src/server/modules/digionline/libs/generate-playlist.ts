@@ -1,6 +1,6 @@
 import { slug } from '../../../lib';
 import { Channel } from '../../../interfaces';
-import extraChannels from '../../../../config/extra_channels.json';
+import extraChannels from '../../../../../config/extra_channels.json';
 import { sortBy, compose, toLower, prop, assoc } from 'ramda';
 
 const sortByNameCaseInsensitive = sortBy(compose(toLower, prop('name')));

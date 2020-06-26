@@ -1,4 +1,4 @@
-import { getAllPrograms } from './';
+import { getAllPrograms } from '../libs';
 import { safeXML, slug } from '../../../lib';
 import { flatten } from 'ramda';
 import { Channel, ParsedChannel } from '../../../interfaces';
@@ -6,7 +6,7 @@ const format = require('date-fns/format');
 const subHours = require('date-fns/subHours');
 const fs = require('fs');
 const cliProgress = require('cli-progress');
-import extraChannels from '../../../../config/extra_channels.json';
+import extraChannels from '../../../../../config/extra_channels.json';
 
 export async function generateEpg(rawChannels: Channel[]) {
   const allChannels = [...rawChannels, ...extraChannels];

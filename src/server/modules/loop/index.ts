@@ -1,5 +1,5 @@
-import config from '../../../config/config.json';
-import { promiseSequence } from '../../lib/index.js';
+import config from '../../../../config/config.json';
+import { promiseSequence } from '../../lib/index';
 
 type LoopFn = () => Promise<void>;
 export class Loop {

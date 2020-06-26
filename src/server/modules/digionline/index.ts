@@ -1,7 +1,7 @@
 import { getChannelList } from './libs';
 import { DB } from '../db';
 import { Inject } from '../inject';
-import config from '../../../config/config.json';
+import config from '../../../../config/config.json';
 
 export class DigiOnline {
   @Inject(DB) private _db: DB;
