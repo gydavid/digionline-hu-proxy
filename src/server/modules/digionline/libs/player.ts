@@ -21,10 +21,9 @@ async function getPlayLists(channel: Channel, deviceId: number, afterLogin = fal
   if (
     lastChannel &&
     lastChannel.id === channel.id &&
-    differenceInSeconds(new Date(), new Date(lastChannel.updated)) < 60
+    differenceInSeconds(new Date(), new Date(lastChannel.updated)) < 60 * 5
   ) {
-    console.log(`#${getDevice(deviceId).device_name}# Continue playing channel: ${channel.name}`);
-    db.set(`session.${deviceId}.lastChannel.updated`, new Date());
+    console.log(`#${getDevice(deviceId).device_name}# Play channel from cache: ${channel.name}`);
     return lastChannel.playlists;
   }
   let hash = db.get(`session.${deviceId}.playerHash`);
