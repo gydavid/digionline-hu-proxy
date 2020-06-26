@@ -5,7 +5,7 @@ class Splash extends Component {
   render() {
     return (
       <div className="splashScreen">
-        <span>Select a channel to start watching TV.</span>
+        <span>Válassz csatornát</span>
       </div>
     );
   }

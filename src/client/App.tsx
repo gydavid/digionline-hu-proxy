@@ -61,6 +61,7 @@ class App extends Component {
               playing
               width="100%"
               height="100%"
+              onClick={(e) => e.preventDefault()}
             />
             {this.state.selected === null ? <Splash /> : null}
           </div>

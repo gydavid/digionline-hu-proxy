@@ -22,6 +22,13 @@
   position: relative;
 }
 
+video::-webkit-media-controls-timeline,
+video::-webkit-media-controls-current-time-display,
+video::-webkit-media-controls-time-remaining-display,
+video::-webkit-media-controls-play-button {
+  display: none !important;
+}	
+
 .channel {
   padding: 10px;
   line-height: 40px;

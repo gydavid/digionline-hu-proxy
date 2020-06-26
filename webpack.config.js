@@ -51,7 +51,10 @@ module.exports = {
   mode: devMode ? 'development' : 'production',
   plugins: [
     new CopyWebpackPlugin({
-      patterns: [{ from: './src/client/index.html', to: './index.html' }],
+      patterns: [
+        { from: './src/client/index.html', to: './index.html' },
+        { from: './src/client/favicon.ico', to: './favicon.ico' },
+      ],
     }),
     new MiniCssExtractPlugin({
       allChunks: true,
