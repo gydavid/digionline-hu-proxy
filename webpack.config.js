@@ -1,4 +1,5 @@
-'use strict';
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
 module.exports = {
   entry: './src/client/main.tsx',
   output: {
@@ -16,4 +17,9 @@ module.exports = {
     extensions: ['.ts', '.tsx', '.js'],
   },
   mode: 'production',
+  plugins: [
+    new CopyWebpackPlugin({
+      patterns: [{ from: './src/client/index.html', to: './client/index.html' }],
+    }),
+  ],
 };

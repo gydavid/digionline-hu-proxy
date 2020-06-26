@@ -61,7 +61,11 @@ export class Web {
       }
     });
 
-    app.get('*', (_req, res) => res.send('Yay! :('));
+    app.get('/', function (_req, res) {
+      res.sendFile(process.cwd() + '/dist/client/index.html');
+    });
+
+    app.use(express.static(process.cwd() + '/dist/client'));
 
     app.listen(config.web.innerPort, () =>
       console.log(`Listening at ${config.web.ssl ? 'https' : 'http'}://${config.web.domain}:${config.web.outerPort}`),

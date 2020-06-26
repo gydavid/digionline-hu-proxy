@@ -18,13 +18,16 @@
     "@types/lowdb": "^1.0.9",
     "@types/node": "12.12.6",
     "@types/ramda": "0.27.6",
+    "copy-webpack-plugin": "6.0.2",
+    "ts-loader": "7.0.5",
+    "tsc-watch": "4.2.8",
     "typescript": "3.9.5",
-    "tsc-watch": "4.2.8"
+    "webpack": "4.43.0",
+    "webpack-cli": "3.3.12"
   },
   "dependencies": {
     "cheerio": "1.0.0-rc.3",
     "cli-progress": "3.8.2",
-    "concurrently": "^5.2.0",
     "date-fns": "2.14.0",
     "express": "4.17.1",
     "express-basic-auth": "1.2.0",
@@ -35,9 +38,6 @@
     "react-dom": "16.13.1",
     "rimraf": "3.0.2",
     "slugify": "1.4.0",
-    "tough-cookie": "4.0.0",
-    "ts-loader": "7.0.5",
-    "webpack": "4.43.0",
-    "webpack-cli": "3.3.12"
+    "tough-cookie": "4.0.0"
   }
 }
