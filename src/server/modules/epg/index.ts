@@ -13,6 +13,6 @@ export class Epg {
 
   async epg() {
     const channels = this._db.get('channels') as Channel[];
-    // await generateEpg(channels.length ? channels : (programUrls as Channel[]));
+    await generateEpg(channels.length ? channels : (programUrls as Channel[]));
   }
 }
