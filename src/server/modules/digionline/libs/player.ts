@@ -16,7 +16,7 @@ export async function getPlaylist(channel: Channel, quality = 'hq', deviceId) {
   return stream;
 }
 
-async function getPlayLists(channel: Channel, deviceId: number, afterLogin = false) {
+async function getPlayLists(channel: Channel, deviceId: number, attempt = 0) {
   const lastChannel = db.get(`session.${deviceId}.lastChannel`);
   if (
     lastChannel &&
@@ -29,18 +29,14 @@ async function getPlayLists(channel: Channel, deviceId: number, afterLogin = fal
   let hash = db.get(`session.${deviceId}.playerHash`);
   if (!hash) {
     try {
-      console.log(`#${getDevice(deviceId).device_name}# Get playlist hash: ${channel.name}`);
-      const playerHtml = await http[deviceId].get(`https://digionline.hu/player/${channel.id}`);
-      const urlMatch = playerHtml.match(/http(.*?).m3u8/g);
-      const url = urlMatch[0];
-      hash = url.match(/[a-f0-9]{32}/i)[0];
+      hash = await getPlayerHash(deviceId, channel);
       db.set(`session.${deviceId}.playerHash`, hash);
     } catch {}
   }
   if (!hash) {
-    if (!afterLogin) {
+    if (attempt < 1) {
       await login(deviceId);
-      return getPlayLists(channel, deviceId, true);
+      return getPlayLists(channel, deviceId, attempt + 1);
     } else {
       throw new Error('Failed player hash parsing! :(');
     }
@@ -48,9 +44,10 @@ async function getPlayLists(channel: Channel, deviceId: number, afterLogin = fal
   const url = `https://online.digi.hu/api/streams/playlist/${channel.id}/${hash}.m3u8`;
   const playlists = await http[deviceId].get(url);
   if (playlists.indexOf('#EXTM3U') < 0) {
-    if (!afterLogin) {
-      await login(deviceId);
-      return getPlayLists(channel, deviceId, true);
+    if (attempt < 1) {
+      hash = await getPlayerHash(deviceId, channel);
+      db.set(`session.${deviceId}.playerHash`, hash);
+      return getPlayLists(channel, deviceId, attempt + 1);
     } else {
       throw new Error('Failed playlist parsing! :(');
     }
@@ -58,6 +55,20 @@ async function getPlayLists(channel: Channel, deviceId: number, afterLogin = fal
   db.set(`session.${deviceId}.lastChannel`, { playlists, id: channel.id, updated: new Date() });
   console.log(`#${getDevice(deviceId).device_name}# Play channel: ${channel.name}`);
   return playlists;
+}
+
+async function getPlayerHash(deviceId: number, channel: Channel, attempt = 0): Promise<string> {
+  console.log(`#${getDevice(deviceId).device_name}# Get playlist hash: ${channel.name}`);
+  try {
+    const playerHtml = await http[deviceId].get(`https://digionline.hu/player/${channel.id}`);
+    const urlMatch = playerHtml.match(/http(.*?).m3u8/g);
+    const url = urlMatch[0];
+    const hash = url.match(/[a-f0-9]{32}/i)[0];
+    return hash;
+  } catch {
+    await login(deviceId);
+    return getPlayerHash(deviceId, channel, attempt + 1);
+  }
 }
 
 async function keepConnection(deviceId: number, channel: Channel) {

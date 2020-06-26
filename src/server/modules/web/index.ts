@@ -2,7 +2,7 @@ import express from 'express';
 const basicAuth = require('express-basic-auth');
 import config from '../../../../config/config.json';
 import { DB } from '../db';
-import { generatePlaylist } from '../digionline/libs';
+import { generatePlaylist, getChannels } from '../digionline/libs';
 import { getPlaylist, getDevice } from '../digionline/libs/player';
 import { Inject } from '../inject';
 
@@ -35,7 +35,14 @@ export class Web {
     app.get('/channels/:device_id?/:quality*?', async (req, res) => {
       let deviceId = req.params.device_id ? parseInt(req.params.device_id.split(/[.\-_]/)[0]) : 0;
       if (deviceId > 2) deviceId = 0;
-      const playslist = await generatePlaylist(this._db.get('channels'), deviceId, req.params.quality || 'hq');
+      const playslist = generatePlaylist(this._db.get('channels'), deviceId, req.params.quality || 'hq');
+      res.send(playslist);
+    });
+
+    app.get('/channels.json/:device_id?/:quality*?', async (req, res) => {
+      let deviceId = req.params.device_id ? parseInt(req.params.device_id.split(/[.\-_]/)[0]) : 0;
+      if (deviceId > 2) deviceId = 0;
+      const playslist = getChannels(this._db.get('channels'), deviceId, req.params.quality || 'hq');
       res.send(playslist);
     });
 

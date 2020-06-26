@@ -5,20 +5,28 @@
   "main": "dist/src/main.js",
   "scripts": {
     "start": "node ./dist/server/src/server/main.js",
-    "watch:server": "tsc-watch -p tsconfig.server.json --noClear --onSuccess \"npm run start\"",
-    "watch:client": "webpack -w",
-    "dev": "npm run watch:server & npm run watch:client",
+    "watch:server": "NODE_ENV=development tsc-watch -p tsconfig.server.json --noClear --onSuccess \"npm run start\"",
+    "watch:client": "NODE_ENV=development webpack -w",
+    "dev": "NODE_ENV=development npm run watch:server & NODE_ENV=development npm run watch:client",
     "build": "rimraf dist && npm run build:client && npm run build:server",
-    "build:client": "rimraf dist/client && webpack",
-    "build:server": "rimraf dist/server && tsc -p tsconfig.server.json"
+    "build:client": "rimraf dist/client && NODE_ENV=production webpack",
+    "build:server": "rimraf dist/server && NODE_ENV=production tsc -p tsconfig.server.json"
   },
   "devDependencies": {
     "@types/cheerio": "0.22.18",
     "@types/express": "4.17.6",
-    "@types/lowdb": "^1.0.9",
+    "@types/lowdb": "1.0.9",
     "@types/node": "12.12.6",
     "@types/ramda": "0.27.6",
+    "@types/react": "16.9.41",
     "copy-webpack-plugin": "6.0.2",
+    "css-loader": "3.6.0",
+    "mini-css-extract-plugin": "0.9.0",
+    "optimize-css-assets-webpack-plugin": "5.0.3",
+    "sass": "1.26.9",
+    "sass-loader": "8.0.2",
+    "style-loader": "1.2.1",
+    "terser-webpack-plugin": "3.0.6",
     "ts-loader": "7.0.5",
     "tsc-watch": "4.2.8",
     "typescript": "3.9.5",
@@ -26,6 +34,8 @@
     "webpack-cli": "3.3.12"
   },
   "dependencies": {
+    "axios": "0.19.2",
+    "bootstrap": "4.5.0",
     "cheerio": "1.0.0-rc.3",
     "cli-progress": "3.8.2",
     "date-fns": "2.14.0",
@@ -36,6 +46,7 @@
     "ramda": "0.27.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-player": "2.3.1",
     "rimraf": "3.0.2",
     "slugify": "1.4.0",
     "tough-cookie": "4.0.0"

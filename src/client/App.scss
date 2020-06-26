@@ -1,0 +1,52 @@
+.player-wrapper {
+  margin: auto;
+  top: 0;
+
+  video {
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.container-fluid {
+  padding: 0;
+}
+
+.channels {
+  background: #1d1d1d;
+  color: #ececec;
+}
+
+.video {
+  position: relative;
+}
+
+.channel {
+  padding: 10px;
+  line-height: 40px;
+  cursor: pointer;
+  clear: both;
+  border-bottom: 1px solid #484848;
+
+  &:hover, &.active {
+    background: #3c3c3c;
+  }
+
+  .logo {
+    float: left;
+    padding-right: 15px;
+
+    img {
+      height: 40px;
+    }
+  }
+
+  .name {
+    span {
+      display: inline-block;
+      line-height: 21px;
+      font-weight: 500;
+    }
+  }
+}
