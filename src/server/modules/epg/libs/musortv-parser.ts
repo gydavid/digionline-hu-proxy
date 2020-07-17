@@ -18,6 +18,9 @@ export function getAllPrograms(channels: Channel[], bar?): Promise<ParsedChannel
 }
 
 export async function getPrograms(channel: Channel, attempt = 0): Promise<ParsedChannel> {
+  if (!channel.programUrl) {
+    return null;
+  }
   const response = await http.get(channel.programUrl);
   try {
     const programList: Program[] = [];

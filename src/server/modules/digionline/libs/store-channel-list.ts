@@ -41,7 +41,8 @@ function parseChannels(categories: Category[], $: CheerioStatic): Channel[] {
 }
 
 function getProgramUrl(id, name): string {
-  return programUrls.find((program) => program.name === name || program.id === id).programUrl;
+  const program = programUrls.find((program) => program.name === name || program.id === id);
+  if (program) return programUrls.find((program) => program.name === name || program.id === id).programUrl;
 }
 
 function getChannelUrl(id: string) {

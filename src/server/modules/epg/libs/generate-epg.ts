@@ -20,7 +20,7 @@ export async function generateEpg(rawChannels: Channel[]) {
   );
   bar.start(allChannels.length, 0);
   try {
-    const channels = await getAllPrograms(allChannels, bar);
+    const channels = (await getAllPrograms(allChannels, bar)).filter((channel) => channel !== null);
     bar.stop();
     const channelsXml = channels.map(getChannelXml);
     const programsXml = flatten(channels.map(getProgramsXml));
