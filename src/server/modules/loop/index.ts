@@ -10,6 +10,6 @@ export class Loop {
 
   async _loop(loops) {
     await promiseSequence(loops);
-    setTimeout(this._loop, 1000 * 60 * 60 * config.refresh_interval);
+    setTimeout(() => this._loop(loops), 1000 * 60 * 60 * config.refresh_interval);
   }
 }
