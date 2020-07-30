@@ -12,20 +12,20 @@ export async function generateEpg(rawChannels: Channel[]) {
   const allChannels = [...rawChannels, ...extraChannels];
   const bar = new cliProgress.SingleBar(
     {
-      noTTYOutput: true,
       hideCursor: true,
       format: 'Generate EPG | {bar} {percentage}% | ETA: {eta}s | {value}/{total}',
     },
     cliProgress.Presets.shades_classic,
   );
   bar.start(allChannels.length, 0);
+  console.log('Generate EPG...');
   try {
     const channels = (await getAllPrograms(allChannels, bar)).filter((channel) => channel !== null);
     bar.stop();
     const channelsXml = channels.map(getChannelXml);
     const programsXml = flatten(channels.map(getProgramsXml));
     writeXml(channelsXml, programsXml);
-    console.log('Successful EPG generation!');
+    console.log('EPG generation successful!');
   } catch (e) {
     console.error(`\nEPG parsing failed! (${e.message})`);
     return;
