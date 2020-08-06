@@ -13,11 +13,15 @@ export class DigiOnline {
   }
 
   async channels() {
-    const channels = await getChannelList();
-    const filteredChannels = channels.filter(
-      (channel) => !config.digionline.removeChannels.includes(parseInt(channel.id)),
-    );
-    this._db.set('channels', filteredChannels);
-    console.log('Successful Channels generation!');
+    try {
+      const channels = await getChannelList();
+      const filteredChannels = channels.filter(
+        (channel) => !config.digionline.removeChannels.includes(parseInt(channel.id)),
+      );
+      this._db.set('channels', filteredChannels);
+      console.log('Successful Channels generation!');
+    } catch (e) {
+      console.error(`Channels generation failed! (${e.message})`);
+    }
   }
 }

@@ -12,7 +12,11 @@ export class Epg {
   }
 
   async epg() {
-    const channels = this._db.get('channels') as Channel[];
-    await generateEpg(channels.length ? channels : (programUrls as Channel[]));
+    try{
+      const channels = this._db.get('channels') as Channel[];
+      await generateEpg(channels.length ? channels : (programUrls as Channel[]));
+    } catch(e) {
+      console.error(`EPG generation failed! (${e.message})`);
+    }
   }
 }
