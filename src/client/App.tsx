@@ -41,7 +41,7 @@ class App extends Component {
         onClick={() => this.chooseChannel(ch)}
       >
         <div className="logo">
-          <img src={ch.logoUrl} />
+          <img src={ch.logo} />
         </div>
         <div className="name">
           <span>{ch.name}</span>

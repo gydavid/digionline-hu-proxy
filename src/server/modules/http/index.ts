@@ -1,6 +1,7 @@
 import { Injectable } from '../inject';
 const got = require('got');
 const { CookieJar } = require('tough-cookie');
+const fs = require('fs');
 
 @Injectable
 export class Http {
@@ -28,5 +29,16 @@ export class Http {
         followRedirect: false,
       })
       .then((response) => response.body);
+  }
+
+  public async download(url: string, file: string): Promise<void> {
+    const stream = got.stream(url);
+    return new Promise((resolve) => {
+      const writeStream = fs.createWriteStream(file);
+      stream.pipe(writeStream);
+      writeStream.on('finish', () => {
+        resolve();
+      });
+    });
   }
 }

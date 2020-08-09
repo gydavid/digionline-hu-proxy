@@ -6,6 +6,7 @@ export type Category = {
 export type Channel = {
   name: string;
   logoUrl: string;
+  logo?: string;
   id: string;
   category: Category;
   url: string;
