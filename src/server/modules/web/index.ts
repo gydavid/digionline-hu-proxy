@@ -79,7 +79,6 @@ export class Web {
         fs.mkdirSync(logoFolder);
       }
       const channel = getChannel(req.params.channel_id);
-      console.log(channel);
       if (!channel) {
         res.send('');
         return;
