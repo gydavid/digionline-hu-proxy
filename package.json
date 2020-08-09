@@ -1,7 +1,7 @@
 {
-  "name": "musortv-epg-parser",
+  "name": "digionline_proxy",
   "version": "1.0.0",
-  "description": "Musor.tv EPG parser",
+  "description": "Digionline Proxy",
   "main": "dist/src/main.js",
   "scripts": {
     "start": "node ./dist/server/src/server/main.js",
