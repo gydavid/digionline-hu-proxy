@@ -1,1 +1,1 @@
-# Digionline Proxy
+# Digionline HU Proxy
