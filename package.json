@@ -1,7 +1,7 @@
 {
-  "name": "digionline_proxy",
+  "name": "digionline_hu_proxy",
   "version": "1.0.0",
-  "description": "Digionline Proxy",
+  "description": "Digionline HU Proxy",
   "main": "dist/src/main.js",
   "scripts": {
     "start": "node ./dist/server/src/server/main.js",
