@@ -1,5 +1,5 @@
 {
-  "name": "digionline_hu_proxy",
+  "name": "Digionline-HU-Proxy",
   "version": "1.0.0",
   "description": "Digionline HU Proxy",
   "main": "dist/src/main.js",
