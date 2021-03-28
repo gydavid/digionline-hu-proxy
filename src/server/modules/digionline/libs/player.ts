@@ -81,8 +81,12 @@ async function keepConnection(deviceId: number, channel: Channel, attempt = 0) {
       Referer: `https://digionline.hu/player/${channel.id}`,
       'X-Requested-With': 'XMLHttpRequest',
     });
-    console.log(`#${getDevice(deviceId).device_name}# Keep connection`);
     const success = !JSON.parse(response).error;
+    if(!success && attempt < 5) {
+      await login(deviceId);
+      return keepConnection(deviceId, channel, attempt + 1);
+    }
+    console.log(`#${getDevice(deviceId).device_name}# Keep connection`);
     db.set(`session.${deviceId}.lastRefresh`, new Date());
     return success;
   } catch {
