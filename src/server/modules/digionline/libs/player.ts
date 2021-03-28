@@ -77,6 +77,7 @@ async function keepConnection(deviceId: number, channel: Channel, attempt = 0) {
   try {
     const lastRefresh = db.get(`session.${deviceId}.lastRefresh`);
     if (lastRefresh && differenceInSeconds(new Date(), new Date(lastRefresh)) < 5 * 60) return true;
+    console.log(`#${getDevice(deviceId).device_name}# Keep connection`);
     const response = await http[deviceId].get(`https://digionline.hu/refresh?id=${channel.id}`, {
       Referer: `https://digionline.hu/player/${channel.id}`,
       'X-Requested-With': 'XMLHttpRequest',
@@ -86,7 +87,6 @@ async function keepConnection(deviceId: number, channel: Channel, attempt = 0) {
       await login(deviceId);
       return keepConnection(deviceId, channel, attempt + 1);
     }
-    console.log(`#${getDevice(deviceId).device_name}# Keep connection`);
     db.set(`session.${deviceId}.lastRefresh`, new Date());
     return success;
   } catch {
