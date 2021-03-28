@@ -13,7 +13,7 @@
   {
     "name": "RTL II",
     "logoUrl": "https://online.digi.hu/cache/api/programs/rtlii.png",
-    "id": "extra_1",
+    "id": "extra_2",
     "category": {
       "id": "8",
       "name": "hír/közszolgálati/kulturális"
@@ -24,7 +24,7 @@
   {
     "name": "RTL Gold",
     "logoUrl": "https://online.digi.hu/cache/api/programs/rtl-gold.png",
-    "id": "extra_1",
+    "id": "extra_3",
     "category": {
       "id": "8",
       "name": "hír/közszolgálati/kulturális"
@@ -35,7 +35,7 @@
   {
     "name": "RTL+",
     "logoUrl": "https://online.digi.hu/cache/api/programs/rtl.png",
-    "id": "extra_1",
+    "id": "extra_4",
     "category": {
       "id": "8",
       "name": "hír/közszolgálati/kulturális"
@@ -46,7 +46,7 @@
   {
     "name": "Cool TV",
     "logoUrl": "https://online.digi.hu/cache/api/programs/cool-tv.png",
-    "id": "extra_1",
+    "id": "extra_5",
     "category": {
       "id": "8",
       "name": "hír/közszolgálati/kulturális"
@@ -57,7 +57,7 @@
   {
     "name": "Film+",
     "logoUrl": "https://online.digi.hu/cache/api/programs/film.png",
-    "id": "extra_1",
+    "id": "extra_6",
     "category": {
       "id": "8",
       "name": "hír/közszolgálati/kulturális"
@@ -68,7 +68,7 @@
   {
     "name": "Sorozat+",
     "logoUrl": "https://online.digi.hu/cache/api/programs/sorozat.png",
-    "id": "extra_1",
+    "id": "extra_7",
     "category": {
       "id": "8",
       "name": "hír/közszolgálati/kulturális"
