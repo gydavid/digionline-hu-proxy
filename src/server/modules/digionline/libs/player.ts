@@ -73,7 +73,7 @@ async function getPlayerHash(deviceId: number, channel: Channel, attempt = 0): P
 
 async function keepConnection(deviceId: number, channel: Channel) {
   const lastRefresh = db.get(`session.${deviceId}.lastRefresh`);
-  if (lastRefresh && differenceInSeconds(new Date(), new Date(lastRefresh)) < 30) return true;
+  if (lastRefresh && differenceInSeconds(new Date(), new Date(lastRefresh)) < (4 * 60)) return true;
   const response = await http[deviceId].get(`https://digionline.hu/refresh?id=${channel.id}`, {
     Referer: `https://digionline.hu/player/${channel.id}`,
     'X-Requested-With': 'XMLHttpRequest',
@@ -87,7 +87,7 @@ async function getStream(playlists, quality, deviceId) {
   let streamUrl = playlists.trim().match(new RegExp(`https:(.*q=${quality}.*)`, 'g'));
   if (!streamUrl) streamUrl = playlists.trim().match(new RegExp(`https:(.*q=.*)$`, 'g'));
   const timestamp = Math.floor(Date.now() / 1000);
-  let url = streamUrl[0].split('&_t=')[0] + `&_t=${timestamp}`;
+  let url = streamUrl[0];
   return await http[deviceId].get(url);
 }
 
