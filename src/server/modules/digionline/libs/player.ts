@@ -21,7 +21,7 @@ async function getPlayLists(channel: Channel, deviceId: number, attempt = 0) {
   if (
     lastChannel &&
     lastChannel.id === channel.id &&
-    differenceInSeconds(new Date(), new Date(lastChannel.updated)) < 60 * 5
+    differenceInSeconds(new Date(), new Date(lastChannel.updated)) < 60 * 60 * 5
   ) {
     console.log(`#${getDevice(deviceId).device_name}# Play channel from cache: ${channel.name}`);
     return lastChannel.playlists;
@@ -34,7 +34,7 @@ async function getPlayLists(channel: Channel, deviceId: number, attempt = 0) {
     } catch {}
   }
   if (!hash) {
-    if (attempt < 1) {
+    if (attempt < 5) {
       await login(deviceId);
       return getPlayLists(channel, deviceId, attempt + 1);
     } else {
@@ -44,7 +44,7 @@ async function getPlayLists(channel: Channel, deviceId: number, attempt = 0) {
   const url = `https://online.digi.hu/api/streams/playlist/${channel.id}/${hash}.m3u8`;
   const playlists = await http[deviceId].get(url);
   if (playlists.indexOf('#EXTM3U') < 0) {
-    if (attempt < 1) {
+    if (attempt < 5) {
       hash = await getPlayerHash(deviceId, channel);
       db.set(`session.${deviceId}.playerHash`, hash);
       return getPlayLists(channel, deviceId, attempt + 1);
@@ -66,21 +66,31 @@ async function getPlayerHash(deviceId: number, channel: Channel, attempt = 0): P
     const hash = url.match(/[a-f0-9]{32}/i)[0];
     return hash;
   } catch {
-    await login(deviceId);
-    return getPlayerHash(deviceId, channel, attempt + 1);
+    if (attempt < 5) {
+      await login(deviceId);
+      return getPlayerHash(deviceId, channel, attempt + 1);
+    }
   }
 }
 
-async function keepConnection(deviceId: number, channel: Channel) {
-  const lastRefresh = db.get(`session.${deviceId}.lastRefresh`);
-  if (lastRefresh && differenceInSeconds(new Date(), new Date(lastRefresh)) < 5 * 60) return true;
-  const response = await http[deviceId].get(`https://digionline.hu/refresh?id=${channel.id}`, {
-    Referer: `https://digionline.hu/player/${channel.id}`,
-    'X-Requested-With': 'XMLHttpRequest',
-  });
-  console.log(`#${getDevice(deviceId).device_name}# Keep connection`);
-  db.set(`session.${deviceId}.lastRefresh`, new Date());
-  return !JSON.parse(response).error;
+async function keepConnection(deviceId: number, channel: Channel, attempt = 0) {
+  try {
+    const lastRefresh = db.get(`session.${deviceId}.lastRefresh`);
+    if (lastRefresh && differenceInSeconds(new Date(), new Date(lastRefresh)) < 5 * 60) return true;
+    const response = await http[deviceId].get(`https://digionline.hu/refresh?id=${channel.id}`, {
+      Referer: `https://digionline.hu/player/${channel.id}`,
+      'X-Requested-With': 'XMLHttpRequest',
+    });
+    console.log(`#${getDevice(deviceId).device_name}# Keep connection`);
+    const success = !JSON.parse(response).error;
+    db.set(`session.${deviceId}.lastRefresh`, new Date());
+    return success;
+  } catch {
+    if (attempt < 5) {
+      await login(deviceId);
+      return keepConnection(deviceId, channel, attempt + 1);
+    }
+  }
 }
 
 async function getStream(playlists, quality, deviceId) {
