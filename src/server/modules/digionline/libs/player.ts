@@ -73,7 +73,7 @@ async function getPlayerHash(deviceId: number, channel: Channel, attempt = 0): P
 
 async function keepConnection(deviceId: number, channel: Channel) {
   const lastRefresh = db.get(`session.${deviceId}.lastRefresh`);
-  if (lastRefresh && differenceInSeconds(new Date(), new Date(lastRefresh)) <= 5 * 60) return true;
+  if (lastRefresh && differenceInSeconds(new Date(), new Date(lastRefresh)) < 5 * 60) return true;
   const response = await http[deviceId].get(`https://digionline.hu/refresh?id=${channel.id}`, {
     Referer: `https://digionline.hu/player/${channel.id}`,
     'X-Requested-With': 'XMLHttpRequest',
