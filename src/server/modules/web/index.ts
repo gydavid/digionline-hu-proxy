@@ -38,6 +38,7 @@ export class Web {
       let deviceId = req.params.device_id ? parseInt(req.params.device_id.split(/[.\-_]/)[0]) : 0;
       if (deviceId > 2) deviceId = 0;
       const playslist = generatePlaylist(this._db.get('channels'), deviceId, req.params.quality || 'hq');
+      res.set('content-type', 'application/x-mpegURL');
       res.send(playslist);
     });
 
@@ -45,6 +46,7 @@ export class Web {
       let deviceId = req.params.device_id ? parseInt(req.params.device_id.split(/[.\-_]/)[0]) : 0;
       if (deviceId > 2) deviceId = 0;
       const playslist = getMergedChannels(this._db.get('channels'), deviceId, req.params.quality || 'hq');
+      res.set('content-type', 'application/json');
       res.send(playslist);
     });
 
@@ -61,9 +63,11 @@ export class Web {
           req.params.quality || 'hq',
           deviceId,
         );
+        res.set('content-type', 'application/x-mpegURL');
         res.send(stream);
       } catch (e) {
         console.log(`#${getDevice(deviceId).device_name}# ${e.message}`);
+        res.set('content-type', 'application/x-mpegURL');
         res.send('ERROR');
       }
     });
