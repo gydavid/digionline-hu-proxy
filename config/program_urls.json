@@ -31,18 +31,13 @@
   },
   {
     "id": "248",
-    "name": "DIGI Sport 1",
-    "programUrl": "https://musor.tv/heti/tvmusor/DIGISPORT1"
+    "name": "Match4",
+    "programUrl": "https://musor.tv/heti/tvmusor/MATCH4"
   },
   {
     "id": "249",
-    "name": "DIGI Sport 2",
-    "programUrl": "https://musor.tv/heti/tvmusor/DIGISPORT2"
-  },
-  {
-    "id": "250",
-    "name": "DIGI Sport 3",
-    "programUrl": "https://musor.tv/heti/tvmusor/DIGISPORT3"
+    "name": "Arena4",
+    "programUrl": "https://musor.tv/heti/tvmusor/ARENA4"
   },
   {
     "id": "251",
@@ -68,6 +63,11 @@
     "id": "255",
     "name": "Eurosport",
     "programUrl": "https://musor.tv/heti/tvmusor/EUROSPORT"
+  },
+  {
+    "id": "258",
+    "name": "Film Now",
+    "programUrl": "https://musor.tv/heti/tvmusor/FILMNOW"
   },
   {
     "id": "256",
